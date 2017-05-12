@@ -24,7 +24,6 @@ var clientOWM = require('node-rest-client-promise').Client()
 client.on('message', msg => {
   if (msg.channel.type !== 'dm' && (config.channel !== msg.channel.id || msg.author.id === client.user.id)) return
 
-  // If message is hello, post hello too
   var msgTab = msg.content.split(' ')
   if (msgTab[0] === 'youtube:') {
     var message = ''
@@ -52,6 +51,10 @@ client.on('message', msg => {
         }
         console.log(res.response.statusCode)
       })
+
+  // If message is hello, post hello too
+  if (msg.content === 'hello') {
+    msg.channel.sendMessage('Hello to you too, fellow !')
   }
 
   msgTab = msg.content.split(' ')

@@ -24,7 +24,8 @@
     "google-translate-api": "^2.2.2",
     "node-rest-client-promise": "^2.0.0",
     "pokedex-promise-v2": "^3.0.3",
-    "spotify-web-api-node": "^2.4.0"
+    "spotify-web-api-node": "^2.4.0",
+    "twitter": "^1.7.0"
   },
   "devDependencies": {
     "ava": "^0.19.1",

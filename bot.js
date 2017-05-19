@@ -12,7 +12,14 @@ var SpotifyWebApi = require('spotify-web-api-node')
 var spotifyApi = new SpotifyWebApi({
   clientId: 'c85d72908393430b8a3d191303a44cb8',
   clientSecret: '044eaee7b5144caebaafc1b370f31828'
+})
+var Twitter = require('twitter')
 
+var twitterClient = new Twitter({
+  consumer_key: 'GbhsMXiYxEurst8y9iRdTLnXY',
+  consumer_secret: 'kjGHlQNEv7BVJZkR27y5y2T4nviQfzq3m4zzKKosmZsw1w4xxk',
+  access_token_key: '865505348249047040-Ndur0ufaJrKX9sDWG2AqK6N6Cld54YT',
+  access_token_secret: 'OYTFpWH9jXkWndG08XgYkgvmOoCx0f6SHaJ5e8LAMTSq3'
 })
 
 client.on('ready', () => {
@@ -51,10 +58,28 @@ client.on('message', msg => {
         }
         console.log(res.response.statusCode)
       })
+  }
 
   // If message is hello, post hello too
   if (msg.content === 'hello') {
     msg.channel.sendMessage('Hello to you too, fellow !')
+  }
+
+  msgTab = msg.content.split(' ')
+
+  if (msgTab[0] === 'tweet:') {
+    message = ''
+    for (i = 1; i < msgTab.length; i++) {
+      message = message + ' ' + msgTab[i]
+    }
+
+    if (message.length <= 140) {
+      twitterClient.post('statuses/update', {status: message}, function (error, tweet, response) {
+        if (!error) {
+          console.log(tweet)
+        }
+      })
+    }
   }
 
   msgTab = msg.content.split(' ')
@@ -259,4 +284,20 @@ client.on('message', msg => {
    console.log(e)
  })
 })
+
+twitterClient.stream('statuses/filter', {track: 'AlizeeDev'}, function (stream) {
+  stream.on('data', function (tweet) {
+    console.log(tweet.text)
+    var message = new Discord.Message()
+    message.channel.sendMessage('You were mention in this tweet :/n' +
+      'From : ' + tweet.user.name + '/n' +
+      tweet.user.sreen_name + '/n' +
+      tweet.text)
+  })
+
+  stream.on('error', function (error) {
+    console.log(error)
+  })
+})
+
 client.login(config.token)

@@ -288,10 +288,10 @@ client.on('message', msg => {
 twitterClient.stream('statuses/filter', {track: 'AlizeeDev'}, function (stream) {
   stream.on('data', function (tweet) {
     console.log(tweet.text)
-    var message = new Discord.Message()
-    message.channel.sendMessage('You were mention in this tweet :/n' +
-      'From : ' + tweet.user.name + '/n' +
-      tweet.user.sreen_name + '/n' +
+    // var message = new Discord.Message()
+    var channelid = '307411336084586496'
+    client.channels.find('id', channelid).sendMessage('You were mention in this tweet : ' +
+      'From : ' + tweet.user.name + ' : ' +
       tweet.text)
   })
 

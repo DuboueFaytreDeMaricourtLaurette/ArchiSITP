@@ -19,6 +19,8 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}!`)
 })
 
+var clientOWM = require('node-rest-client-promise').Client()
+
 client.on('message', msg => {
   if (msg.channel.type !== 'dm' && (config.channel !== msg.channel.id || msg.author.id === client.user.id)) return
 
@@ -49,6 +51,34 @@ client.on('message', msg => {
           }
         }
         console.log(res.response.statusCode)
+      })
+  }
+
+  msgTab = msg.content.split(' ')
+
+  if (msgTab[0] === 'weather:') {
+    var messageOWM = ''
+    for (var j = 1; j < msgTab.length; j++) {
+      messageOWM = messageOWM + ' ' + msgTab[j]
+    }
+
+    var newMessageOWM = messageOWM.split(', ')
+
+    var city = newMessageOWM[0]
+    var country = newMessageOWM[1]
+    console.log(messageOWM)
+    console.log(city)
+    console.log(country)
+    clientOWM.getPromise('http://api.openweathermap.org/data/2.5/weather?q=city,country&units=metric&lang=fr&APPID=b05787eda8d8f7967925692ea52134d2')
+      .catch((error) => {
+        throw error
+      })
+      .then((res) => {
+        var weather = 'La température est de ' + res.data.main.temp + '°C'
+        weather = weather + ', l\'humidité est de ' + res.data.main.humidity + ' %'
+        weather = weather + ', le temps est : ' + res.data.weather[0].description
+        msg.channel.sendMessage(weather)
+        console.log(res.data)
       })
   }
 
@@ -198,10 +228,9 @@ client.on('message', msg => {
         console.log(e)
       })
     }
-  }
-)
-.catch(function (e) {
-  console.log(e)
-})
+  })
+ .catch(function (e) {
+   console.log(e)
+ })
 })
 client.login(config.token)

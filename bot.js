@@ -33,7 +33,7 @@ client.on('message', msg => {
     console.log(messageOWM)
     console.log(city)
     console.log(country)
-    clientOWM.getPromise('http://api.openweathermap.org/data/2.5/weather?q=city,country&units=metric&lang=fr&APPID=b05787eda8d8f7967925692ea52134d2')
+    clientOWM.getPromise('http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&units=metric&lang=fr&APPID=b05787eda8d8f7967925692ea52134d2')
       .catch((error) => {
         throw error
       })

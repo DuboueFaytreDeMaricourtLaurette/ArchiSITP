@@ -48,6 +48,39 @@ client.on('message', msg => {
         console.log(res.response.statusCode)
       })
   }
+  if (msg.content.substring(msg.content, 6) === 'gtrad:') {
+    // detection de la langue
+    const translate = Translate
+    var messaget = msg.content.substring(7)
+    translate.detect(message)
+      .then((results) => {
+        let detections = results[0]
+        detections = Array.isArray(detections) ? detections : [detections]
+        msg.channel.sendMessage('Langue:')
+        console.log('Langue:')
+        detections.forEach((detection) => {
+          msg.channel.sendMessage(`${detection.language}`)
+          console.log(`${detection.language}`)
+        })
+      })
+      .catch((err) => {
+        msg.channel.sendMessage('ERROR:', err)
+      })
+    // traduction
+    translate.translate(messaget, 'en').then((results) => {
+      let translations = results[0]
+      translations = Array.isArray(translations) ? translations : [translations]
+      msg.channel.sendMessage('Traduction:')
+      console.log('Traduction:')
+      translations.forEach((translation) => {
+        msg.channel.sendMessage(`${messaget} => ${translation}`)
+        console.log(`${messaget} => ${translation}`)
+      })
+    })
+    .catch((err) => {
+      msg.channel.sendMessage('ERROR', err)
+    })
+  }
 })
 
 client.login(config.token)

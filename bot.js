@@ -66,9 +66,6 @@ client.on('message', msg => {
 
     var city = newMessageOWM[0]
     var country = newMessageOWM[1]
-    console.log(messageOWM)
-    console.log(city)
-    console.log(country)
     clientOWM.getPromise('http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&units=metric&lang=fr&APPID=b05787eda8d8f7967925692ea52134d2')
       .catch((error) => {
         throw error
@@ -78,6 +75,41 @@ client.on('message', msg => {
         weather = weather + ', l\'humidité est de ' + res.data.main.humidity + ' %'
         weather = weather + ', le temps est : ' + res.data.weather[0].description
         msg.channel.sendMessage(weather)
+        console.log(res.data)
+      })
+  } else if (msgTab[0] === 'forecast') {
+    messageOWM = ''
+    for (var k = 1; k < msgTab.length; k++) {
+      messageOWM = messageOWM + ' ' + msgTab[k]
+    }
+
+    newMessageOWM = messageOWM.split(', ')
+
+    city = newMessageOWM[0]
+    country = newMessageOWM[1]
+
+    clientOWM.getPromise('http://api.openweathermap.org/data/2.5/forecast?q=' + city + ',' + country + '&units=metric&lang=fr&APPID=b05787eda8d8f7967925692ea52134d2')
+      .catch((error) => {
+        throw error
+      })
+      .then((res) => {
+        // for (var i = 0; i < res.data.list.length; i++) {
+        //   var datebis = res.data.list.dt_txt.split('-')[2]
+        //   var jourbis = datebis.split(' ')[0]
+        //   if (jourbis === jour + 1) {
+        //
+        //   }
+        //   var weather = 'La température est de ' + res.data.list[i].main.temp + '°C'
+        //   weather = weather + ', l\'humidité est de ' + res.data.list[i].main.humidity + ' %'
+        //   weather = weather + ', le temps est : ' + res.data.list[i].weather[0].description
+        //   msg.channel.sendMessage(weather)
+        //   var date = res.data.list.dt_txt.split('-')[2]
+        //   var jour = date.split(' ')[0]
+        // }
+        // var weather = 'La température est de ' + res.data.main.temp + '°C'
+        // weather = weather + ', l\'humidité est de ' + res.data.main.humidity + ' %'
+        // weather = weather + ', le temps est : ' + res.data.weather[0].description
+        // msg.channel.sendMessage(weather)
         console.log(res.data)
       })
   }

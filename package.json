@@ -26,7 +26,6 @@
     "pokedex-promise-v2": "^3.0.3",
     "node-rest-client-promise": "^2.0.0",
     "spotify-web-api-node": "^2.4.0"
-
   },
   "devDependencies": {
     "ava": "^0.19.1",

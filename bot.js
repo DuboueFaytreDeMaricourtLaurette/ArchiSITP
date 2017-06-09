@@ -3,6 +3,9 @@ const config = require('./config.js')
 const client = new Discord.Client()
 
 var promise = require('node-rest-client-promise').Client()
+var Translate = require('@google-cloud/translate')({
+  key: 'AIzaSyBngKK7gcXWaJVV3SmCZ40UmxFWCljOQx8'
+})
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}!`)

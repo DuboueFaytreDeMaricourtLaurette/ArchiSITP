@@ -28,7 +28,7 @@ client.on('message', msg => {
         console.log('Langue:')
         detections.forEach((detection) => {
           msg.channel.sendMessage(`${detection.language}`)
-          console.log(`${detection.language}`)
+          // console.log(`${detection.language}`)
         })
       })
       .catch((err) => {

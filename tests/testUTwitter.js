@@ -12,7 +12,7 @@ var twitterClient = new Twitter({
 test('Example test', t => {
   return twitterClient.post('statuses/update', {status: 'tweet du test unitaire'}, function (error, tweet, response) {
     if (!error) {
-      t.is(response.statusCode, 200)
+      t.is(response.IncomingMessage.statusCode, 200)
     } else {
       t.fail()
     }

@@ -52,7 +52,7 @@ client.on('message', msg => {
     // detection de la langue
     const translate = Translate
     var messaget = msg.content.substring(7)
-    translate.detect(message)
+    translate.detect(messaget)
       .then((results) => {
         let detections = results[0]
         detections = Array.isArray(detections) ? detections : [detections]
@@ -72,6 +72,22 @@ client.on('message', msg => {
       translations = Array.isArray(translations) ? translations : [translations]
       msg.channel.sendMessage('Traduction:')
       console.log('Traduction:')
+      translations.forEach((translation) => {
+        msg.channel.sendMessage(`${messaget} => ${translation}`)
+        console.log(`${messaget} => ${translation}`)
+      })
+    })
+    .catch((err) => {
+      msg.channel.sendMessage('ERROR', err)
+    })
+    // traduction langue demandée
+    var languedemandee = msg.content.charAt(6) + msg.content.charAt(7)
+    console.log(languedemandee)
+    translate.translate(messaget, languedemandee).then((results) => {
+      let translations = results[0]
+      translations = Array.isArray(translations) ? translations : [translations]
+      // msg.channel.sendMessage('Traduction:')
+      // console.log('Traduction:')
       translations.forEach((translation) => {
         msg.channel.sendMessage(`${messaget} => ${translation}`)
         console.log(`${messaget} => ${translation}`)

@@ -76,7 +76,7 @@ client.on('message', msg => {
     if (message.length <= 140) {
       twitterClient.post('statuses/update', {status: message}, function (error, tweet, response) {
         if (!error) {
-          console.log(tweet)
+          console.log(response)
         }
       })
     }

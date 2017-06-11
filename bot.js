@@ -41,41 +41,32 @@ client.on('message', msg => {
         msg.channel.sendMessage(weather)
         console.log(res.data)
       })
-  } else if (msgTab[0] === 'forecast') {
-    messageOWM = ''
-    for (var k = 1; k < msgTab.length; k++) {
-      messageOWM = messageOWM + ' ' + msgTab[k]
+  } else if (msgTab[0] === 'forecast:') {
+    var messageOWMF = ''
+    for (j = 1; j < msgTab.length; j++) {
+      messageOWMF = messageOWMF + ' ' + msgTab[j]
     }
-
-    newMessageOWM = messageOWM.split(', ')
-
-    city = newMessageOWM[0]
-    country = newMessageOWM[1]
-
-    clientOWM.getPromise('http://api.openweathermap.org/data/2.5/forecast?q=' + city + ',' + country + '&units=metric&lang=fr&APPID=b05787eda8d8f7967925692ea52134d2')
-      .catch((error) => {
-        throw error
-      })
-      .then((res) => {
-        // for (var i = 0; i < res.data.list.length; i++) {
-        //   var datebis = res.data.list.dt_txt.split('-')[2]
-        //   var jourbis = datebis.split(' ')[0]
-        //   if (jourbis === jour + 1) {
-        //
-        //   }
-        //   var weather = 'La température est de ' + res.data.list[i].main.temp + '°C'
-        //   weather = weather + ', l\'humidité est de ' + res.data.list[i].main.humidity + ' %'
-        //   weather = weather + ', le temps est : ' + res.data.list[i].weather[0].description
-        //   msg.channel.sendMessage(weather)
-        //   var date = res.data.list.dt_txt.split('-')[2]
-        //   var jour = date.split(' ')[0]
-        // }
-        // var weather = 'La température est de ' + res.data.main.temp + '°C'
-        // weather = weather + ', l\'humidité est de ' + res.data.main.humidity + ' %'
-        // weather = weather + ', le temps est : ' + res.data.weather[0].description
-        // msg.channel.sendMessage(weather)
+    var newMessageOWMF = messageOWMF.split(', ')
+    city = newMessageOWMF[0]
+    country = newMessageOWMF[1]
+    clientOWM.getPromise('http://api.openweathermap.org/data/2.5/forecast?q=' + country + ',' + city + '&units=metric&lang=fr&APPID=28ab43c9ad4db9b92783421704a0e249')
+    .catch((error) => {
+      throw error
+    })
+    .then((res) => {
+      var x = res.data.cnt
+      var ecart = x / 5
+      var k = 1
+      for (var j = 1; j <= x; j = j + ecart) {
+        var weather = 'Jour ' + k + ', à la même heure que maintenant : '
+        weather = weather + 'La température sera de ' + res.data.list[j].main.temp + '°C'
+        weather = weather + ', l\'humidité sera de ' + res.data.list[j].main.humidity + ' %'
+        weather = weather + ', le temps sera : ' + res.data.list[j].weather[0].description
+        msg.channel.sendMessage(weather)
+        k = k + 1
         console.log(res.data)
-      })
+      }
+    })
   }
 })
 

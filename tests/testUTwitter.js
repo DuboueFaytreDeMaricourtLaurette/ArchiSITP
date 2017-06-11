@@ -9,11 +9,14 @@ var twitterClient = new Twitter({
   access_token_secret: 'OYTFpWH9jXkWndG08XgYkgvmOoCx0f6SHaJ5e8LAMTSq3'
 })
 
+var message = 'tweet de test unitaire'
+
 test('Example test', t => {
-  return twitterClient.post('statuses/update', {status: 'tweet du test unitaire'}, function (error, tweet, response) {
+  return twitterClient.post('statuses/update', {status: message}, function (error, tweet, response) {
     if (!error) {
       t.is(response.statusCode, '200')
     } else {
+      console.log(error)
       t.fail()
     }
   })

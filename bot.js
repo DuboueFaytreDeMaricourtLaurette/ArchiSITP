@@ -21,6 +21,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (msg.channel.type !== 'dm' && (config.channel !== msg.channel.id || msg.author.id === client.user.id)) return
+
   // If message is hello, post hello too
   var msgTab = msg.content.split(' ')
   if (msgTab[0] === 'youtube:') {
@@ -50,6 +51,7 @@ client.on('message', msg => {
         console.log(res.response.statusCode)
       })
   }
+
   if (msg.content.substring(msg.content, 6) === 'gtrad:') {
     // detection de la langue
     const translate = Translate
@@ -99,6 +101,7 @@ client.on('message', msg => {
       msg.channel.sendMessage('ERROR - LANGUE ' + languedemandee + ' NON RECONNUE', err)
     })
   }
+
   spotifyApi.clientCredentialsGrant()
   .then(function (data) {
     spotifyApi.setAccessToken(data.body['access_token'])

@@ -2,7 +2,7 @@
   "name": "cloud-discord-bot",
   "version": "1.0.0",
   "description": "A simple bot for teaching purposes",
-  "main": "bot.js",
+  "main": "index.js",
   "scripts": {
     "start": "node bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,11 +18,12 @@
   },
   "homepage": "https://gitlab.com/pierrick.bignet/cloud-discord-bot#README",
   "dependencies": {
+    "@google-cloud/translate": "^0.8.2",
     "discord.js": "^11.1.0",
     "eslint-config-standard": "^10.2.1",
-    "google-auth-library": "^0.10.0",
-    "googleapis": "^19.0.0",
-    "node-rest-client-promise": "^2.0.0"
+    "google-translate-api": "^2.2.2",
+    "node-rest-client-promise": "^2.0.0",
+    "pokedex-promise-v2": "^3.0.3"
   },
   "devDependencies": {
     "ava": "^0.19.1",

@@ -21,19 +21,12 @@
     "@google-cloud/translate": "^0.8.2",
     "discord.js": "^11.1.0",
     "eslint-config-standard": "^10.2.1",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "google-translate-api": "^2.2.2",
     "node-rest-client-promise": "^2.0.0",
-    "pokedex-promise-v2": "^3.0.3"
-=======
+    "pokedex-promise-v2": "^3.0.3",
     "node-rest-client-promise": "^2.0.0",
     "spotify-web-api-node": "^2.4.0"
->>>>>>> spotify marche!
-=======
-    "node-rest-client-promise": "^2.0.0",
-    "spotify-web-api-node": "^2.4.0"
->>>>>>> 2affd3b7c51249a30d7b946d2bb7c7318bceb694
+
   },
   "devDependencies": {
     "ava": "^0.19.1",

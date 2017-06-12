@@ -13,6 +13,7 @@ var spotifyApi = new SpotifyWebApi({
   clientId: 'c85d72908393430b8a3d191303a44cb8',
   clientSecret: '044eaee7b5144caebaafc1b370f31828'
 })
+
 var Twitter = require('twitter')
 
 var twitterClient = new Twitter({
@@ -283,6 +284,21 @@ client.on('message', msg => {
  .catch(function (e) {
    console.log(e)
  })
+})
+
+twitterClient.stream('statuses/filter', {track: 'AlizeeDev'}, function (stream) {
+  stream.on('data', function (tweet) {
+    console.log(tweet.text)
+    // var message = new Discord.Message()
+    var channelid = '307411336084586496'
+    client.channels.find('id', channelid).sendMessage('You were mention in this tweet : ' +
+      'From : ' + tweet.user.name + ' : ' +
+      tweet.text)
+  })
+
+  stream.on('error', function (error) {
+    console.log(error)
+  })
 })
 
 twitterClient.stream('statuses/filter', {track: 'AlizeeDev'}, function (stream) {

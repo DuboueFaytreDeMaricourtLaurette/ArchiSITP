@@ -5,10 +5,5 @@ script:
   - ./node_modules/.bin/eslint .
   - ./node_modules/.bin/ava --verbose tests\
 deploy:
-<<<<<<< HEAD
-   provider: azure_web_apps
-   verbose: true
-=======
   provider: azure_web_apps
   verbose: true
->>>>>>> 75083d4f5c00cd9ec4d71c66bcc1b113f46e6112

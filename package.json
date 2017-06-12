@@ -22,7 +22,8 @@
     "discord.js": "^11.1.0",
     "eslint-config-standard": "^10.2.1",
     "google-translate-api": "^2.2.2",
-    "node-rest-client-promise": "^2.0.0"
+    "node-rest-client-promise": "^2.0.0",
+    "pokedex-promise-v2": "^3.0.3"
   },
   "devDependencies": {
     "ava": "^0.19.1",

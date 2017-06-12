@@ -64,7 +64,7 @@ client.on('message', msg => {
         })
       })
       .catch((err) => {
-        msg.channel.sendMessage('ERROR:', err)
+        msg.channel.sendMessage('ERROR - LANGUE NON RECONNUE', err)
       })
     // traduction
     translate.translate(messaget, 'en').then((results) => {
@@ -94,7 +94,7 @@ client.on('message', msg => {
       })
     })
     .catch((err) => {
-      msg.channel.sendMessage('ERROR', err)
+      msg.channel.sendMessage('ERROR - LANGUE ' + languedemandee + ' NON RECONNUE', err)
     })
   }
 })

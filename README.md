@@ -36,7 +36,7 @@ Ce projet contient un bot lié à l'application Discord, qui réalise les comman
     * "forecast: [ville souhaitée], [pays]"
   - résultats :
     * pour weather : le bot retourne le temps qu'il fait dans la ville demandée
-    * pour forecast : le bot retourne le temps qu'il fera sur 5 jours à l'heure ou la commande est utilisée
+    * pour forecast : le bot retourne le temps qu'il fera sur 5 jours à l'heure où la commande est utilisée
   - exemples de commandes valides : 
     * "weather: Paris, fr"
     * "forecast: Paris, fr"
@@ -47,7 +47,7 @@ Ce projet contient un bot lié à l'application Discord, qui réalise les comman
 + Le bot vous indique également, dans le channel désigné par channelId dans config.js, les tweets dans lesquels le compte twitterClient est mentionné  
   
 les packages node utilisés pour réaliser les appels aux différentes API sont :  
-+ google-translate-api
++ @google-cloud/translate
 + node-rest-client-promise
 + spotify-web-api-node
 + twitter

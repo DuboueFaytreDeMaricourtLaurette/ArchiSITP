@@ -32,7 +32,7 @@ client.on('message', msg => {
         })
       })
       .catch((err) => {
-        msg.channel.sendMessage('ERROR:', err)
+        msg.channel.sendMessage('ERROR - LANGUE NON RECONNUE', err)
       })
     // traduction anglais
     translate.translate(message, 'en').then((results) => {
@@ -62,7 +62,7 @@ client.on('message', msg => {
       })
     })
     .catch((err) => {
-      msg.channel.sendMessage('ERROR', err)
+      msg.channel.sendMessage('ERROR - LANGUE ' + languedemandee + ' NON RECONNUE', err)
     })
   }
 })
